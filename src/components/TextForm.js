@@ -11,21 +11,21 @@ export default function TextForm(props) {
         console.log("Uppercase button clicked!");
         let upperText = text.toUpperCase();
         setText(upperText);
-        props.showAlert("Converted to Uppercase", "Success");
+        props.showAlert("Converted to Uppercase!", "Success");
     };
 
     const handleLowerClick = () => {
         console.log("Uppercase button clicked!");
         let upperText = text.toLowerCase();
         setText(upperText);
-        props.showAlert("Converted to Lowercase", "Success");
+        props.showAlert("Converted to Lowercase!", "Success");
     };
 
     const speak = () => {
         let msg = new SpeechSynthesisUtterance();
         msg.text = text;
         window.speechSynthesis.speak(msg);
-        props.showAlert("Converted Text to Speech", "Success");
+        props.showAlert("Converted Text to Speech!", "Success");
     }
 
     // event is the text change in textarea, on changing the state we will setText as the value in textarea
@@ -45,6 +45,11 @@ export default function TextForm(props) {
         props.showAlert("Copied to Clipboard!", "Success");
     }
 
+    const clearText = () => {
+        setText("");
+        props.showAlert("Text Cleared!", "Success");
+    }
+
     return (
         <>
             <div className="my-4" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
@@ -58,6 +63,7 @@ export default function TextForm(props) {
                 <button className="btn btn-primary mx-2" onClick={speak}>Text To Speech</button>
                 <button className="btn btn-primary mx-2" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
                 <button className="btn btn-primary mx-2" onClick={copyText}>Copy Text</button>
+                <button className="btn btn-primary mx-2" onClick={clearText}>Clear Text</button>
             </div>
             <div className="container my-3" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
                 <h4>Text Summary</h4>
